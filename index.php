@@ -28,7 +28,7 @@ $resultSet = $stmt->fetchAll();
 <ul>
 	<?php
 	foreach ($resultSet as $row) {
-		echo "li";.
+		echo "li".
 		$row["studentname"] . '--'. $row['course']
 		."</li>";
 	}
