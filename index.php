@@ -6,7 +6,7 @@
 <body>
 <h1>My first PHP page</h1>
 <?php
-echo "Show all rows from test2 Database";
+echo "Show all rows from test1 Database";
 $db = parse_url(getenv("DATABASE_URL"));
 $pdo = new PDO("pgsql:". sprintf(
 "host=%s;port=%s;user=%s;password=%s;dbname=%s",
@@ -29,7 +29,7 @@ $resultSet = $stmt->fetchAll();
 	<?php
 	foreach ($resultSet as $row) {
 		echo "li".
-		$row["studentname"] . '--'. $row['cours']
+		$row["studentname"] . '--'. $row['course']
 		."</li>";
 	}
 	?>
