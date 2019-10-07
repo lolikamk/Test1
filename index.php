@@ -17,7 +17,7 @@ $db["pass"],
 ltrim($db["path"],"/")
 ));
 //your sql query
-$sql = "SELECT studentname, course FROM registercourse";
+$sql = "SELECT productID, Name, Price FROM Product";
 $stmt = $pdo->prepare($sql);
 //execute the query on the server and return the result
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ $resultSet = $stmt->fetchAll();
 	<?php
 	foreach ($resultSet as $row) {
 		echo "li".
-		$row["studentname"] . '--'. $row['course']
+		$row["ProductID"] . '--'. $row['Name'] . '--'. $row['Price']
 		."</li>";
 	}
 	?>
