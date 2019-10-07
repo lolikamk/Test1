@@ -6,7 +6,7 @@
 <body>
 <h1>My first PHP page</h1>
 <?php
-echo "Show all rows from Postgres Database";
+echo "Show all rows from test2 Database";
 $db = parse_url(getenv("DATABASE_URL"));
 $pdo = new PDO("pgsql:". sprintf(
 "host=%s;port=%s;user=%s;password=%s;dbname=%s",
@@ -17,7 +17,7 @@ $db["pass"],
 ltrim($db["path"],"/")
 ));
 //your sql query
-$sql = "SELECT productID, Name, Price FROM Product";
+$sql = "SELECT studentname, course FROM registercourse";
 $stmt = $pdo->prepare($sql);
 //execute the query on the server and return the result
 $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ $resultSet = $stmt->fetchAll();
 	<?php
 	foreach ($resultSet as $row) {
 		echo "li".
-		$row["ProductID"] . '--'. $row['Name'] . '--'. $row['Price']
+		$row["studentname"] . '--'. $row['cours']
 		."</li>";
 	}
 	?>
