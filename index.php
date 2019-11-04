@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
 <body>
-<h1>My first PHP page</h1>
+
+<h1> Toy Company ABC</h1>
+
 <?php
-echo "Show all rows from test1 Database";
-$db = parse_url(getenv("DATABASE_URL"));
-$pdo = new PDO("pgsql:". sprintf(
-"host=%s;port=%s;user=%s;password=%s;dbname=%s",
-$db["host"],
-$db["port"],
-$db["user"],
-$db["pass"],
-ltrim($db["path"],"/")
-));
-//your sql query
-$sql = "SELECT studentname, course FROM registercourse";
-$stmt = $pdo->prepare($sql);
-//execute the query on the server and return the result
-$stmt->setFetchMode(PDO::FETCH_ASSOC);
-$stmt->execute();
-$resultSet = $stmt->fetchAll();
-//display the data
+	echo "Show all information of company product";
+	
+	//Refere to database 
+	$db = parse_url(getenv("DATABASE_URL"));
+	$pdo = new PDO("pgsql:" . sprintf(
+	    "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+	    $db["host"],
+	    $db["port"],
+	    $db["user"],
+	    $db["pass"],
+	    ltrim($db["path"], "/")
+	));
+	//you sql query
+	$sql = "SELECT ID, Name, Price, Total FROM Product";
+
+	$stmt = $pdo->prepare($sql);
+	//execute the query on the server and return the result set
+	$stmt->setFetchMode(PDO::FETCH_ASSOC);
+	$stmt->execute();
+	$resultSet = $stmt->fetchAll();
+	//display the data 
 ?>
 <ul>
 	<?php
-	foreach ($resultSet as $row) {
-		echo "li".
-		$row["studentname"] . '--'. $row['course']
-		."</li>";
-	}
+		foreach ($resultSet as $row) {
+			echo "<li>" .
+				$row["ID"] . '--'. $row["Name"] . '--'. $row["Price"] . '--'. $row["Total"]
+			. "</li>";
+		}
 	?>
 </ul>
+
 </body>
 </html>
